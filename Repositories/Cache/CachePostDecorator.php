@@ -158,4 +158,15 @@ class CachePostDecorator extends BaseCacheDecorator implements PostRepository
                 }
             );
     }
+
+    public function archive()
+    {
+        return $this->cache
+            ->tags([$this->entityName, 'global'])
+            ->remember("{$this->locale}.{$this->entityName}.archive", $this->cacheTime,
+                function () {
+                    return $this->repository->archive();
+                }
+            );
+    }
 }

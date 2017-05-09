@@ -203,4 +203,14 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     {
         return $this->model->match($query)->paginate($per_page);
     }
+
+    public function archive()
+    {
+        return $this->model->select(\DB::raw('YEAR(created_at) year, MONTH(created_at) month, COUNT(*) post_count, created_at'))
+                           ->groupBy('year')
+                           ->groupBy('month')
+                           ->orderBy('month', 'desc')
+                           ->orderBy('year', 'desc')
+                           ->get();
+    }
 }

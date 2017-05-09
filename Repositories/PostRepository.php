@@ -65,4 +65,6 @@ interface PostRepository extends BaseRepository
      * @return mixed
      */
     public function search($query, $per_page);
+
+    public function archive();
 }
