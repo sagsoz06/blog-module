@@ -49,7 +49,7 @@
                                 </td>
                                 <td>
                                     <span class="label {{ $post->present()->statusLabelClass }}">
-                                        {{ $post->present()->status }}
+                                        {!! $post->present()->status !!}
                                     </span>
                                 </td>
                                 <td>
