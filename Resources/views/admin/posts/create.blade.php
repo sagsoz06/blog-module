@@ -1,8 +1,5 @@
 @extends('layouts.master')
 
-@section('styles')
-@stop
-
 @section('content-header')
 <h1>
     {{ trans('blog::post.title.create post') }}
@@ -114,6 +111,7 @@
 @section('footer')
     <a data-toggle="modal" data-target="#keyboardShortcutsModal"><i class="fa fa-keyboard-o"></i></a> &nbsp;
 @stop
+
 @section('shortcuts')
     <dl class="dl-horizontal">
         <dt><code>b</code></dt>
@@ -121,7 +119,7 @@
     </dl>
 @stop
 
-@section('scripts')
+@push('js-stack')
 <script src="{{ Module::asset('blog:js/MySelectize.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $( document ).ready(function() {
@@ -143,4 +141,4 @@
         $(".textarea").wysihtml5();
     });
 </script>
-@stop
+@endpush

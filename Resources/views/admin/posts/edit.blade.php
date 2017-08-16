@@ -1,8 +1,5 @@
 @extends('layouts.master')
 
-@section('styles')
-@stop
-
 @section('content-header')
 <h1>
     {{ trans('blog::post.title.edit post') }}
@@ -127,7 +124,7 @@
     </dl>
 @stop
 
-@section('scripts')
+@push('js-stack')
 <script src="{{ Module::asset('blog:js/MySelectize.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
@@ -155,4 +152,4 @@
         });
     });
 </script>
-@stop
+@endpush

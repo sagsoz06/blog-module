@@ -5,6 +5,7 @@ return [
         'post' => 'Записи',
         'create post' => 'Создать запись',
         'edit post' => 'Редактировать запись',
+		'recent posts' => 'Недавние Посты',
     ],
     'button' => [
         'create post' => 'Создать запись',

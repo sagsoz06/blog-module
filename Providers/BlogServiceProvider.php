@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Modules\Blog\Entities\Category;
 use Modules\Blog\Entities\Post;
+use Modules\Blog\Events\Handlers\RegisterBlogSidebar;
 use Modules\Blog\Facades\BlogCategory;
 use Modules\Blog\Facades\BlogFacade;
 use Modules\Blog\Repositories\Cache\CacheCategoryDecorator;
@@ -15,13 +16,15 @@ use Modules\Blog\Repositories\CategoryRepository;
 use Modules\Blog\Repositories\Eloquent\EloquentCategoryRepository;
 use Modules\Blog\Repositories\Eloquent\EloquentPostRepository;
 use Modules\Blog\Repositories\PostRepository;
+use Modules\Core\Events\BuildingSidebar;
+use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Media\Image\ThumbnailManager;
 use Modules\Tag\Repositories\TagManager;
 
 class BlogServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -38,6 +41,11 @@ class BlogServiceProvider extends ServiceProvider
     {
         $this->registerBindings();
         $this->registerFacades();
+
+        $this->app['events']->listen(
+          BuildingSidebar::class,
+          $this->getSidebarClassForModule('blog', RegisterBlogSidebar::class)
+        );
     }
 
     public function boot()
