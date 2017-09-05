@@ -38,6 +38,7 @@ return [
         'meta_robot_no_follow' => 'Robots: Sayfa takip edilmesin',
         'intro'                => 'Giriş (Kısa Açıklama)',
         'created_at'           => 'Yayınlanma Tarihi',
+        'content'              => 'İçerik',
     ],
     'navigation'       => [
         'back to index' => 'Yazılara Geri Dön'
