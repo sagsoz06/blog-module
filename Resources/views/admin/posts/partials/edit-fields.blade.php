@@ -19,7 +19,7 @@
         </textarea>
 
         <?php $oldContent = isset($post->translate($lang)->content) ? $post->translate($lang)->content : ''; ?>
-        @editor('content', trans('blog::post.form.content'), old("$lang.content", $old), $lang)
+        @editor('content', trans('blog::post.form.content'), old("$lang.content", $oldContent), $lang)
 
         <?php if (config('asgard.blog.config.post.partials.translatable.edit') !== []): ?>
             <?php foreach (config('asgard.blog.config.post.partials.translatable.edit') as $partial): ?>
