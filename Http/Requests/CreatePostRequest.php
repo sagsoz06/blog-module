@@ -7,12 +7,15 @@ use Modules\Core\Internationalisation\BaseFormRequest;
 class CreatePostRequest extends BaseFormRequest
 {
     protected $translationsAttributesKey = 'blog::post.form';
+
     public function rules()
     {
         return [
-            'category_id' => 'required'
+            'category_id' => 'required',
+            "created_at"  => "required|date_format:d.m.Y H:i"
         ];
     }
+
     public function attributes()
     {
         return trans('blog::post.form');
@@ -22,18 +25,14 @@ class CreatePostRequest extends BaseFormRequest
     {
         return [
             'title' => 'required',
-            'slug' => "required|unique:blog__post_translations,slug,null,post_id,locale,$this->localeKey",
+            'intro' => 'required',
+            'slug'  => "required|unique:blog__post_translations,slug,null,post_id,locale,$this->localeKey",
         ];
     }
 
     public function authorize()
     {
         return true;
-    }
-
-    public function translationMessages()
-    {
-        return trans('validation');
     }
 
     public function messages()

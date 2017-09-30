@@ -7,7 +7,7 @@ use Illuminate\Routing\Router;
 
 $router->group(['prefix' => '/blog'], function (Router $router) {
 
-    $router->bind('post', function ($id) {
+    $router->bind('blogPost', function ($id) {
         return app(\Modules\Blog\Repositories\PostRepository::class)->find($id);
     });
 
@@ -26,23 +26,23 @@ $router->group(['prefix' => '/blog'], function (Router $router) {
         'uses' => 'PostController@store',
         'middleware' => 'can:blog.posts.create',
     ]);
-    $router->get('posts/{post}/edit', [
+    $router->get('posts/{blogPost}/edit', [
         'as' => 'admin.blog.post.edit',
         'uses' => 'PostController@edit',
         'middleware' => 'can:blog.posts.edit',
     ]);
-    $router->put('posts/{post}', [
+    $router->put('posts/{blogPost}', [
         'as' => 'admin.blog.post.update',
         'uses' => 'PostController@update',
         'middleware' => 'can:blog.posts.edit',
     ]);
-    $router->delete('posts/{post}', [
+    $router->delete('posts/{blogPost}', [
         'as' => 'admin.blog.post.destroy',
         'uses' => 'PostController@destroy',
         'middleware' => 'can:blog.posts.destroy',
     ]);
 
-    $router->bind('category', function ($id) {
+    $router->bind('blogCategory', function ($id) {
         return app(\Modules\Blog\Repositories\CategoryRepository::class)->find($id);
     });
 
@@ -61,17 +61,17 @@ $router->group(['prefix' => '/blog'], function (Router $router) {
         'uses' => 'CategoryController@store',
         'middleware' => 'can:blog.categories.create',
     ]);
-    $router->get('categories/{category}/edit', [
+    $router->get('categories/{blogCategory}/edit', [
         'as' => 'admin.blog.category.edit',
         'uses' => 'CategoryController@edit',
         'middleware' => 'can:blog.categories.edit',
     ]);
-    $router->put('categories/{category}', [
+    $router->put('categories/{blogCategory}', [
         'as' => 'admin.blog.category.update',
         'uses' => 'CategoryController@update',
         'middleware' => 'can:blog.categories.edit',
     ]);
-    $router->delete('categories/{category}', [
+    $router->delete('categories/{blogCategory}', [
         'as' => 'admin.blog.category.destroy',
         'uses' => 'CategoryController@destroy',
         'middleware' => 'can:blog.categories.destroy',

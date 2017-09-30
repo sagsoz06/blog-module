@@ -11,13 +11,20 @@ class StoreCategoryRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
-            'slug' => 'required',
+            'slug' => "required|unique:blog__category_translations,slug,null,category_id,locale,$this->localeKey",
         ];
     }
 
     public function rules()
     {
-        return [];
+        return [
+            'ordering'=>'required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return trans('blog::category.form');
     }
 
     public function authorize()

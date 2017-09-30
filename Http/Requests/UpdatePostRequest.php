@@ -6,16 +6,19 @@ use Modules\Core\Internationalisation\BaseFormRequest;
 
 class UpdatePostRequest extends BaseFormRequest
 {
+    protected $translationsAttributesKey = 'blog::post.form';
+
     public function rules()
     {
         return [
-            "created_at" => "required|date_format:d.m.Y H:i"
+            'category_id' => 'required',
+            "created_at"  => "required|date_format:d.m.Y H:i"
         ];
     }
 
     public function translationRules()
     {
-        $id = $this->route()->parameter('post')->id;
+        $id = $this->route()->parameter('blogPost')->id;
 
         return [
             "title" => "required",
@@ -35,10 +38,6 @@ class UpdatePostRequest extends BaseFormRequest
 
     public function translationMessages()
     {
-        return [
-            'title.required' => trans('blog::messages.title is required'),
-            'slug.required' => trans('blog::messages.slug is required'),
-            'slug.unique' => trans('blog::messages.slug is unique'),
-        ];
+        return [];
     }
 }
