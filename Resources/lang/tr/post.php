@@ -39,6 +39,11 @@ return [
         'intro'                => 'Giriş (Kısa Açıklama)',
         'created_at'           => 'Yayınlanma Tarihi',
         'content'              => 'İçerik',
+        'og_types'             => [
+            'article' => 'Makale',
+            'product' => 'Ürün',
+            'website' => 'Websitesi'
+        ]
     ],
     'navigation'       => [
         'back to index' => 'Yazılara Geri Dön'
@@ -48,5 +53,6 @@ return [
     'create resource'  => 'Yazı Ekle',
     'edit resource'    => 'Yazı Düzenle',
     'destroy resource' => 'Yazı Sil',
-    'sitemap resource' => 'Site Haritası'
+    'sitemap resource' => 'Site Haritası',
+    'author resource'  => 'Yazar Yazıları'
 ];
