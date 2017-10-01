@@ -12,7 +12,6 @@ class CreatePostRequest extends BaseFormRequest
     {
         return [
             'category_id' => 'required',
-            "created_at"  => "required|date_format:d.m.Y H:i"
         ];
     }
 
