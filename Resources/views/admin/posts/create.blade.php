@@ -41,7 +41,7 @@
     <div class="col-md-2">
         <div class="box box-primary">
             <div class="box-body">
-                @if(Authentication::hasAccess(['blog.posts.author']) || Sentinel::inRole('admin'))
+                @if($currentUser->hasAccess(['blog.posts.author']) || Sentinel::inRole('admin'))
                     {!! Form::normalSelect('user_id', trans('news::post.form.user_id'), $errors, $userLists, Authentication::user()->id) !!}
                 @endif
                 <div class="form-group">

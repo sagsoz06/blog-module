@@ -80,7 +80,7 @@
                 @mediaMultiple('blogImage', $post, null, trans('blog::post.form.thumbnail'))
             </div>
         </div>
-        @if(Authentication::hasAccess(['blog.posts.sitemap']))
+        @if($currentUser->hasAccess(['blog.posts.sitemap']))
         <div class="box box-primary">
             <div class="box-body">
                 <div class="form-group">
