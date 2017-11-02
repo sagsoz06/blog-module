@@ -42,6 +42,11 @@ class BlogServiceProvider extends ServiceProvider
         $this->registerBindings();
         $this->registerFacades();
 
+        $this->app->extend('asgard.ModulesList', function($app) {
+            array_push($app, 'blog');
+            return $app;
+        });
+
         $this->app['events']->listen(
           BuildingSidebar::class,
           $this->getSidebarClassForModule('blog', RegisterBlogSidebar::class)
