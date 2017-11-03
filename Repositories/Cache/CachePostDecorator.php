@@ -169,4 +169,21 @@ class CachePostDecorator extends BaseCacheDecorator implements PostRepository
                 }
             );
     }
+
+    /**
+     * @param $authorId
+     * @param $per_page
+     * @return mixed
+     */
+    public function authorPosts($authorId, $per_page)
+    {
+        $page = \Request::has('page') ? \Request::query('page') : 1;
+        return $this->cache
+            ->tags($this->entityName, 'global')
+            ->remember("{$this->locale}.{$this->entityName}.authorPosts.{$authorId}.{$page}.{$per_page}", $this->cacheTime,
+                function () use ($authorId, $per_page) {
+                    return $this->repository->authorPosts($authorId, $per_page);
+                }
+            );
+    }
 }

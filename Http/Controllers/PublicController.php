@@ -150,7 +150,7 @@ class PublicController extends BasePublicController
 
         $this->throw404IfNotFound($author);
 
-        $posts = $author->blogposts()->paginate($this->perPage);
+        $posts = $this->post->authorPosts($author->id, $this->perPage);
 
         /* Start Seo */
         $this->seo()->setTitle(trans('themes::blog.author posts', ['author' => $author->fullname]))

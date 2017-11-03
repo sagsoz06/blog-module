@@ -39,11 +39,6 @@ class Post extends Model implements TaggableInterface
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function authorPosts()
-    {
-        return $this->hasManyThrough(Post::class, User::class);
-    }
-
     /**
      * Get the thumbnail image for the current blog post
      * @return File|string

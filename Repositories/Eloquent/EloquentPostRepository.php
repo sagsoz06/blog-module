@@ -213,4 +213,16 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
                            ->orderBy('year', 'desc')
                            ->get();
     }
+
+    /**
+     * @param $authorId
+     * @param $per_page
+     * @return mixed
+     */
+    public function authorPosts($authorId, $per_page)
+    {
+        return $this->model->whereHas('author', function(Builder $q) use ($authorId) {
+            $q->where('id', $authorId);
+        })->with(['author', 'translations', 'category'])->paginate($per_page);
+    }
 }
