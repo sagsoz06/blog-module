@@ -39,6 +39,7 @@
                 {!! Form::normalInput('ordering', trans('blog::category.form.ordering'), $errors, $category) !!}
             </div>
         </div>
+        @if($currentUser->hasAccess('blog.categories.sitemap'))
         <div class="box box-primary">
             <div class="box-body">
                 <div class="form-group">
@@ -64,6 +65,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 

@@ -40,7 +40,7 @@
                 {!! Form::normalInput('ordering', trans('blog::category.form.ordering'), $errors) !!}
             </div>
         </div>
-        @if(Authentication::hasAccess('blog.categories.sitemap'))
+        @if($currentUser->hasAccess('blog.categories.sitemap'))
         <div class="box box-primary">
             <div class="box-body">
                 <div class='form-group{{ $errors->has("meta_robot_no_index") ? ' has-error' : '' }}'>
