@@ -74,7 +74,7 @@ class PostController extends AdminBaseController
     public function index()
     {
         $posts = $this->post->all();
-        if(!\Sentinel::inRole('admin')) {
+        if($this->auth->user()->inRole('admin')) {
             $posts = $posts->where('user_id', $this->auth->user()->id);
         }
         if(request()->ajax()) {
@@ -164,7 +164,7 @@ class PostController extends AdminBaseController
     {
         $this->post->update($post, $request->all());
 
-        if(\Authentication::hasAccess('blog.posts.author')) {
+        if($this->auth->hasAccess('blog.posts.author')) {
             if($request->has('user_id')) {
                 $user = $this->user->find($request->user_id);
                 $post->author()->associate($user);
