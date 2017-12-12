@@ -9,6 +9,7 @@ return [
         'popular posts' => 'Popular Posts',
         'next'          => 'Next Post',
         'previous'      => 'Previous Post',
+        'tag'           => 'Tag: :tag',
     ],
     'button'           => [
         'create post' => 'Create post',

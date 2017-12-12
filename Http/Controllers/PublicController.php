@@ -179,7 +179,7 @@ class PublicController extends BasePublicController
 
         if (isset($tag)) {
             /* Start Seo */
-            $this->seo()->setTitle(trans('tag::tags.tag') . ' : ' . $tag->name)
+            $this->seo()->setTitle(trans('blog::post.title.tag', ['tag'=>$tag->name]))
                 ->setDescription($tag->name)
                 ->meta()->setUrl(route('blog.tag', [$tag->slug]))
                 ->addMeta('robots', "index, follow");
@@ -188,7 +188,7 @@ class PublicController extends BasePublicController
             /* Start Breadcrumbs */
             Breadcrumbs::register('blog.tag', function ($breadcrumbs) use ($tag) {
                 $breadcrumbs->parent('blog');
-                $breadcrumbs->push(trans('tag::tags.tag') . ' : ' . $tag->name, route('blog.tag', [$tag->slug]));
+                $breadcrumbs->push(trans('blog::post.title.tag', ['tag'=>$tag->name]), route('blog.tag', [$tag->slug]));
             });
             /* End Breadcrumbs */
         }

@@ -9,6 +9,7 @@ return [
         'popular posts' => 'Popüler Yazılar',
         'next'          => 'Sonraki Yazı',
         'previous'      => 'Önceki Yazı',
+        'tag'           => 'Etiket: :tag',
     ],
     'button'           => [
         'create post' => 'Yazı Ekle',
