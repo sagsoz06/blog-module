@@ -73,7 +73,7 @@ class PostController extends AdminBaseController
      */
     public function index()
     {
-        $posts = $this->post->all();
+        $posts = $this->post->allWithBuilder();
         if($this->auth->user()->inRole('admin')) {
             $posts = $posts->where('user_id', $this->auth->user()->id);
         }

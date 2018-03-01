@@ -24,6 +24,7 @@ class Post extends Model implements TaggableInterface
     protected $fillable = ['category_id', 'user_id', 'status', 'title', 'slug', 'intro', 'content', 'meta_title', 'meta_description', 'og_title', 'og_description', 'og_type', 'meta_robot_no_index', 'meta_robot_no_follow', 'sitemap_frequency', 'sitemap_priority', 'created_at', 'updated_at'];
     protected $table = 'blog__posts';
     protected $presenter = PostPresenter::class;
+    protected $with = ['category', 'author'];
     protected $casts = [
         'status' => 'int',
     ];
