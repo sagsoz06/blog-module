@@ -54,5 +54,6 @@ return [
     'create resource'  => 'Yazı Ekle',
     'edit resource'    => 'Yazı Düzenle',
     'destroy resource' => 'Yazı Sil',
-    'sitemap resource' => 'Site Haritası'
+    'sitemap resource' => 'Site Haritası',
+    'author resource'  => 'Yazar Yazıları Listele'
 ];
