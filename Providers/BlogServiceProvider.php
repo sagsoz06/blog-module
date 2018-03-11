@@ -51,6 +51,8 @@ class BlogServiceProvider extends ServiceProvider
           BuildingSidebar::class,
           $this->getSidebarClassForModule('blog', RegisterBlogSidebar::class)
         );
+
+        \Widget::register('blogLatestPosts', '\Modules\Blog\Widgets\BlogWidgets@latestPosts');
     }
 
     public function boot()
