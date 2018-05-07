@@ -52,7 +52,10 @@ class BlogServiceProvider extends ServiceProvider
           $this->getSidebarClassForModule('blog', RegisterBlogSidebar::class)
         );
 
-        \Widget::register('blogLatestPosts', '\Modules\Blog\Widgets\BlogWidgets@latestPosts');
+        \Widget::register('blogLatestPosts', '\Modules\Blog\Widgets\BlogWidgets@latest');
+        \Widget::register('blogCategories', '\Modules\Blog\Widgets\BlogWidgets@categories');
+        \Widget::register('blogPopularPosts', '\Modules\Blog\Widgets\BlogWidgets@popular');
+        \Widget::register('blogTags', '\Modules\Blog\Widgets\BlogWidgets@tags');
     }
 
     public function boot()
