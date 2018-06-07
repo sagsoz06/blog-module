@@ -40,9 +40,18 @@ class BlogWidgets
         return view('blog::widgets.'.$view, compact('categories'));
     }
 
-    public function tags(Post $post, $limit=10, $view='tags')
+    public function tags($posts, $limit=10, $view='tags')
     {
-        $tags = $post->tags()->take($limit)->get();
+        if(count($posts)>1) {
+            $tags = $posts->filter(function($post){
+                return $post->tags->count() > 0;
+            })->map(function($post){
+                return $post->tags()->first();
+            });
+            $tags = $tags->take($limit);
+        } else {
+            $tags = $posts->tags()->take($limit)->get();
+        }
         return view('blog::widgets.'.$view, compact('tags'));
     }
 }
