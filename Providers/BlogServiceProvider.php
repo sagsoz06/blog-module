@@ -56,6 +56,7 @@ class BlogServiceProvider extends ServiceProvider
         \Widget::register('blogCategories', '\Modules\Blog\Widgets\BlogWidgets@categories');
         \Widget::register('blogPopularPosts', '\Modules\Blog\Widgets\BlogWidgets@popular');
         \Widget::register('blogTags', '\Modules\Blog\Widgets\BlogWidgets@tags');
+        \Widget::register('blogFindByTag', '\Modules\Blog\Widgets\BlogWidgets@findByTag');
     }
 
     public function boot()

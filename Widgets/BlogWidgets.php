@@ -1,5 +1,6 @@
 <?php namespace Modules\Blog\Widgets;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Repositories\CategoryRepository;
@@ -80,5 +81,23 @@ class BlogWidgets
             $tags = $posts->tags()->take($limit)->get();
         }
         return view('blog::widgets.'.$view, compact('tags'));
+    }
+
+    public function findByTag($tags, $limit=10, $view='find-by-tag')
+    {
+        if($tags instanceof Collection) {
+            $posts = collect();
+            if($tags->count()>0) {
+                foreach ($tags as $tag) {
+                    if(isset($tag->translate(locale())->slug)) {
+                        foreach ($this->post->findByTag($tag->translate('tr')->slug) as $post) {
+                            $posts->push($post);
+                        }
+                    }
+                }
+            }
+            return view('blog::widgets.'.$view, compact('posts'));
+        }
+        return null;
     }
 }
