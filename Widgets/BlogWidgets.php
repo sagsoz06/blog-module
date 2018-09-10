@@ -100,4 +100,10 @@ class BlogWidgets
         }
         return null;
     }
+
+    public function archive($view='archive')
+    {
+        $months = $this->post->archive();
+        return view('blog::widgets.'.$view, compact('months'));
+    }
 }
