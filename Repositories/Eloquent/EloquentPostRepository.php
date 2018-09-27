@@ -52,6 +52,8 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
 
         $post->setTags(array_get($data, 'tags', []));
 
+        event('tag.clearCache');
+
         return $post;
     }
 
@@ -73,6 +75,8 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
         event(new PostWasCreated($post, $data));
 
         $post->setTags(array_get($data, 'tags', []));
+
+        event('tag.clearCache');
 
         return $post;
     }

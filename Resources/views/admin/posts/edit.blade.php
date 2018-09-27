@@ -42,7 +42,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 @if($currentUser->hasAccess('blog.posts.author'))
-                    {!! Form::normalSelect('user_id', trans('news::post.form.user_id'), $errors, $userLists, isset($post->author->id) ? $post->author->id : null) !!}
+                    {!! Form::normalSelect('user_id', trans('blog::post.form.user_id'), $errors, $userLists, isset($post->author->id) ? $post->author->id : null) !!}
                 @endif
                 <div class="form-group">
                     {!! Form::label("category", trans('blog::category.title.category').':') !!}

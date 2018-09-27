@@ -80,4 +80,12 @@ class PostPresenter extends BasePresenter
                 break;
         }
     }
+
+    public function authorUrl()
+    {
+        if(isset($this->entity->author->slug)) {
+            return route('blog.author', $this->entity->author->slug);
+        }
+        return '';
+    }
 }

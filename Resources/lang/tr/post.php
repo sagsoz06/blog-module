@@ -44,7 +44,8 @@ return [
             'article' => 'Makale',
             'product' => 'Ürün',
             'website' => 'Websitesi'
-        ]
+        ],
+        'user_id' => 'Yazar'
     ],
     'navigation'       => [
         'back to index' => 'Yazılara Geri Dön'
