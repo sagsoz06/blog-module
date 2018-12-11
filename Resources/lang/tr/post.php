@@ -10,6 +10,7 @@ return [
         'next'          => 'Sonraki Yazı',
         'previous'      => 'Önceki Yazı',
         'tag'           => 'Etiket: :tag',
+        'archive'       => 'Arşiv Yazıları :month/:year'
     ],
     'button'           => [
         'create post' => 'Yazı Ekle',

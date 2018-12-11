@@ -229,4 +229,12 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
             $q->where('id', $authorId);
         })->with(['author', 'translations', 'category'])->paginate($per_page);
     }
+
+    public function getArchiveBy($month, $year, $per_page)
+    {
+        return $this->model->where(\DB::raw('MONTH(created_at)'), '=', $month)
+                           ->where(\DB::raw('YEAR(created_at)'), '=', $year)
+                           ->with(['translations', 'category'])
+                           ->paginate($per_page);
+    }
 }

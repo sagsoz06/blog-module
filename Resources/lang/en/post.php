@@ -10,6 +10,7 @@ return [
         'next'          => 'Next Post',
         'previous'      => 'Previous Post',
         'tag'           => 'Tag: :tag',
+        'archive'       => 'Blog Archives in :month/:year'
     ],
     'button'           => [
         'create post' => 'Create post',

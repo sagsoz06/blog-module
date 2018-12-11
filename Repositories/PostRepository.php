@@ -77,4 +77,11 @@ interface PostRepository extends BaseRepository
      * @return mixed
      */
     public function authorPosts($authorId, $per_page);
+
+    /**
+     * @param $month
+     * @param $year
+     * @return mixed
+     */
+    public function getArchiveBy($month, $year, $per_page);
 }

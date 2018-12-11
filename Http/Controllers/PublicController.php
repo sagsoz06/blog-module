@@ -214,6 +214,26 @@ class PublicController extends BasePublicController
         return view('blog::search', compact('posts', 'title'));
     }
 
+    public function archive($month, $year)
+    {
+        $posts = $this->post->getArchiveBy($month, $year, $this->perPage);
+        if($posts->count()<=0) app()->abort(404);
+
+        $title = trans('blog::post.title.archive', ['month'=>$month, 'year'=>$year]);
+
+        $this->seo()->setTitle($title)
+                    ->setDescription($title);
+
+        /* Start Breadcrumbs */
+        Breadcrumbs::register('blog.archive', function ($breadcrumbs) use ($title) {
+            $breadcrumbs->parent('blog');
+            $breadcrumbs->push($title);
+        });
+        /* End Breadcrumbs */
+
+        return view('blog::archive', compact('posts', 'month', 'year'));
+    }
+
     /**
      * Throw a 404 error page if the given page is not found
      * @param $page

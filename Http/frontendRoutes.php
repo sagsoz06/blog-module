@@ -4,6 +4,11 @@ use Illuminate\Routing\Router;
 
 /** @var Router $router */
 $router->group(['prefix' =>''], function (Router $router) {
+    $router->get(LaravelLocalization::transRoute('blog::routes.blog.archive'), [
+        'as' => 'blog.archive',
+        'uses' => 'PublicController@archive',
+        'middleware' => config('asgard.blog.config.middleware'),
+    ]);
     $router->get(LaravelLocalization::transRoute('blog::routes.blog.index'), [
         'as' => 'blog.index',
         'uses' => 'PublicController@index',
