@@ -10,7 +10,8 @@ return [
         'next'          => 'Sonraki Yazı',
         'previous'      => 'Önceki Yazı',
         'tag'           => 'Etiket: :tag',
-        'archive'       => 'Arşiv Yazıları :month/:year'
+        'archive'       => 'Arşiv Yazıları :month/:year',
+        'search'        => ':keyword arama sonucunda bulunan yazılar'
     ],
     'button'           => [
         'create post' => 'Yazı Ekle',

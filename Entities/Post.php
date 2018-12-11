@@ -115,9 +115,29 @@ class Post extends Model implements TaggableInterface
      */
     public function scopeMatch($query, $value)
     {
-        return $query->whereHas('translations', function (Builder $q) use($value) {
-            $q->whereRaw("MATCH(title, content) AGAINST(? IN BOOLEAN MODE)", array($value));
-        })->with(['translations', 'category'])->whereStatus(Status::PUBLISHED);
+        return $query->whereHas('translations', function (Builder $q) use ($value) {
+            $q->whereRaw("MATCH(title, description) AGAINST(? IN BOOLEAN MODE)", $this->fullTextWildcards($value));
+        })->with(['translations'])->whereStatus(Status::PUBLISHED);
+    }
+
+    protected function fullTextWildcards($term)
+    {
+        // removing symbols used by MySQL
+        $term = preg_replace('/[^\p{L}\p{N}_]+/u', ' ', $term);
+        $words = explode(' ', $term);
+        foreach ($words as $key => $word) {
+            /*
+             * applying + operator (required word) only big words
+             * because smaller ones are not indexed by mysql
+             */
+            if (strlen($word) >= 3) {
+                $words[$key] = '+' . $word . '*';
+            }
+        }
+
+        $searchTerm = implode(' ', $words);
+
+        return $searchTerm;
     }
 
     /**

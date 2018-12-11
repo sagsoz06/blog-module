@@ -198,7 +198,7 @@ class PublicController extends BasePublicController
 
     public function search(Request $request)
     {
-        $title = $request->has('s') ? $request->get('s') : trans('themes::theme.search');
+        $title = $request->has('s') ? trans('blog::post.title.search', ['keyword'=>$request->get('s')]) : trans('themes::theme.search');
 
         $this->seo()->setTitle($title);
 

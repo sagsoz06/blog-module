@@ -10,7 +10,8 @@ return [
         'next'          => 'Next Post',
         'previous'      => 'Previous Post',
         'tag'           => 'Tag: :tag',
-        'archive'       => 'Blog Archives in :month/:year'
+        'archive'       => 'Blog Archives in :month/:year',
+        'search'        => ':keyword keyword search results'
     ],
     'button'           => [
         'create post' => 'Create post',
