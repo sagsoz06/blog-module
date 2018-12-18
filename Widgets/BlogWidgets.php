@@ -114,7 +114,7 @@ class BlogWidgets
     {
         $months = $this->post->archive();
         $months = $months->map(function($item){
-           $item->archive_url = \LaravelLocalization::getLocalizedURL(locale(), route('blog.archive', [$item->month, $item->year]));
+           $item->archive_url = route('blog.archive', [$item->month, $item->year]);
            return $item;
         });
         if($months) {
