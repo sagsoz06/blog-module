@@ -13,6 +13,9 @@ return [
         'archive'       => 'Arşiv Yazıları :month/:year',
         'search'        => ':keyword arama sonucunda bulunan yazılar'
     ],
+    'tag' => [
+        'desc' => ':tag etiketine göre açıklama'
+    ],
     'button'           => [
         'create post' => 'Yazı Ekle',
         'previous'    => 'Önceki Yazı',

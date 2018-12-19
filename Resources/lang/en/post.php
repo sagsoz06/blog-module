@@ -13,6 +13,9 @@ return [
         'archive'       => 'Blog Archives in :month/:year',
         'search'        => ':keyword keyword search results'
     ],
+    'tag' => [
+        'desc' => 'description of :tag'
+    ],
     'button'           => [
         'create post' => 'Create post',
         'previous'    => 'Previous Post',
