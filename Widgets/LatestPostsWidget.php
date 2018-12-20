@@ -38,7 +38,7 @@ class LatestPostsWidget extends BaseWidget
     {
         return [
             'width' => '4',
-            'height' => '4',
+            'height' => '5',
         ];
     }
 

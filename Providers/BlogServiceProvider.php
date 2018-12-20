@@ -47,17 +47,12 @@ class BlogServiceProvider extends ServiceProvider
             return $app;
         });
 
+        $this->registerWidgets();
+
         $this->app['events']->listen(
           BuildingSidebar::class,
           $this->getSidebarClassForModule('blog', RegisterBlogSidebar::class)
         );
-
-        \Widget::register('blogLatestPosts', '\Modules\Blog\Widgets\BlogWidgets@latest');
-        \Widget::register('blogCategories', '\Modules\Blog\Widgets\BlogWidgets@categories');
-        \Widget::register('blogPopularPosts', '\Modules\Blog\Widgets\BlogWidgets@popular');
-        \Widget::register('blogTags', '\Modules\Blog\Widgets\BlogWidgets@tags');
-        \Widget::register('blogFindByTag', '\Modules\Blog\Widgets\BlogWidgets@findByTag');
-        \Widget::register('blogArchive', '\Modules\Blog\Widgets\BlogWidgets@archive');
     }
 
     public function boot()
@@ -115,6 +110,16 @@ class BlogServiceProvider extends ServiceProvider
                 },
             ],
         ]);
+    }
+
+    private function registerWidgets()
+    {
+        \Widget::register('blogLatestPosts', '\Modules\Blog\Widgets\BlogWidgets@latest');
+        \Widget::register('blogCategories', '\Modules\Blog\Widgets\BlogWidgets@categories');
+        \Widget::register('blogPopularPosts', '\Modules\Blog\Widgets\BlogWidgets@popular');
+        \Widget::register('blogTags', '\Modules\Blog\Widgets\BlogWidgets@tags');
+        \Widget::register('blogFindByTag', '\Modules\Blog\Widgets\BlogWidgets@findByTag');
+        \Widget::register('blogArchive', '\Modules\Blog\Widgets\BlogWidgets@archive');
     }
 
     private function registerFacades()
