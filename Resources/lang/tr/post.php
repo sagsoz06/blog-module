@@ -40,8 +40,6 @@ return [
         'og_title'             => 'Facebook başlık',
         'og_description'       => 'Facebook açıklaması',
         'og_type'              => 'Facebook tip',
-        'meta_robot_no_index'  => 'Robots: Sayfa indexlenmesin',
-        'meta_robot_no_follow' => 'Robots: Sayfa takip edilmesin',
         'intro'                => 'Giriş (Kısa Açıklama)',
         'created_at'           => 'Yayınlanma Tarihi',
         'content'              => 'İçerik',

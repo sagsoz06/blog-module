@@ -40,8 +40,6 @@ return [
         'og_title'             => 'Facebook Title',
         'og_description'       => 'Facebook Description',
         'og_type'              => 'Facebook Type',
-        'meta_robot_no_index'  => 'Robots: no index',
-        'meta_robot_no_follow' => 'Robots: no follow',
         'intro'                => 'Intro',
         'created_at'           => 'Published Date',
     ],
