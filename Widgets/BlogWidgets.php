@@ -122,4 +122,14 @@ class BlogWidgets
         }
         return null;
     }
+
+    public function findByCategory($category="", $limit=5, $view="category-posts")
+    {
+        $category = $this->category->findBySlug($category)->load(['posts', 'translations']);
+        $posts    = $category->posts()->where('status', 2)->take($limit)->get();
+        if($posts->count()>0) {
+            return view('blog::widgets.'.$view, compact('category', 'posts'));
+        }
+        return null;
+    }
 }

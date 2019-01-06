@@ -120,6 +120,7 @@ class BlogServiceProvider extends ServiceProvider
         \Widget::register('blogTags', '\Modules\Blog\Widgets\BlogWidgets@tags');
         \Widget::register('blogFindByTag', '\Modules\Blog\Widgets\BlogWidgets@findByTag');
         \Widget::register('blogArchive', '\Modules\Blog\Widgets\BlogWidgets@archive');
+        \Widget::register('blogFindByCategory', '\Modules\Blog\Widgets\BlogWidgets@findByCategory');
     }
 
     private function registerFacades()
