@@ -28,13 +28,13 @@ class Category extends Model
         return parent::update($attributes, $options);
     }
 
-    public function getUrlAttribute()
-    {
-        return route('blog.category', [$this->getAttribute('slug')]);
-    }
-
     public function getRobotsAttribute()
     {
         return $this->meta_robot_no_index.', '.$this->meta_robot_no_follow;
+    }
+
+    public function getUrlAttribute()
+    {
+        return localize_trans_url(locale(), 'blog::routes.category.slug', ['slug'=>$this->slug]);
     }
 }

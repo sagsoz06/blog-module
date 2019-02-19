@@ -30,14 +30,28 @@ class Post extends Model implements TaggableInterface
     ];
     protected static $entityNamespace = 'asgardcms/blog';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * @return false|string
+     */
+    public function getUrlAttribute()
+    {
+        return localize_trans_url(locale(), 'blog::routes.blog.slug', ['slug'=>$this->slug]);
     }
 
     /**
@@ -50,14 +64,6 @@ class Post extends Model implements TaggableInterface
             return url(\Imagy::getThumbnail($this->files()->first()->filename, 'blogThumb'));
         }
         return null;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrlAttribute()
-    {
-        return route('blog.slug', [$this->slug]);
     }
 
     /**
