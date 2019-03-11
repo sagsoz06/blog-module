@@ -10,8 +10,6 @@ class PostTranslation extends Model
     protected $fillable = ['title', 'slug', 'intro', 'content', 'meta_title', 'meta_description', 'og_title', 'og_description', 'og_type'];
     protected $table = 'blog__post_translations';
 
-    protected $appends = ['url'];
-
     public function getUrlAttribute()
     {
         return localize_trans_url($this->locale, 'blog::routes.blog.slug', ['slug'=>$this->slug]);
