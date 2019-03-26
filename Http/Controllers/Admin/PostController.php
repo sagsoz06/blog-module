@@ -66,14 +66,10 @@ class PostController extends AdminBaseController
         view()->share('ogTypes', $this->ogType->lists());
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function index()
     {
-        $posts = Post::query();
+        $posts = $this->post->allWithBuilder()->with(['translations', 'category', 'category.translations', 'author']);
         if (!$this->auth->user()->inRole('admin')) {
             if($this->auth->hasAccess('blog.posts.author') === false) {
                 $posts = $posts->where('user_id', $this->auth->user()->id);
@@ -85,9 +81,6 @@ class PostController extends AdminBaseController
                     return '<span class="label '.$post->present()->statusLabelClass.'">'.
                     $post->present()->status
                     .'</span>';
-                })
-                ->editColumn('category.name', function ($post) {
-                    return isset($post->category->name) ? $post->category->name : '';
                 })
                 ->addColumn('action', function ($post) {
                     $action_buttons =   \Html::decode(link_to(

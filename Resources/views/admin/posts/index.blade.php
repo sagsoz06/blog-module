@@ -2,11 +2,11 @@
 
 @section('content-header')
 <h1>
-    {{ trans('blog::post.title.post') }}
+    {{ trans('news::post.title.post') }}
 </h1>
 <ol class="breadcrumb">
     <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-    <li class="active">{{ trans('blog::post.title.post') }}</li>
+    <li class="active">{{ trans('news::post.title.post') }}</li>
 </ol>
 @stop
 
@@ -15,8 +15,8 @@
     <div class="col-xs-12">
         <div class="row">
             <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                <a href="{{ route('admin.blog.post.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                    <i class="fa fa-pencil"></i> {{ trans('blog::post.button.create post') }}
+                <a href="{{ route('admin.news.post.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                    <i class="fa fa-pencil"></i> {{ trans('news::post.button.create post') }}
                 </a>
             </div>
         </div>
@@ -29,11 +29,11 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>{{ trans('blog::post.table.status') }}</th>
-                            <th>{{ trans('blog::post.table.author') }}</th>
-                            <th>{{ trans('blog::category.title.category') }}</th>
-                            <th>{{ trans('blog::post.table.title') }}</th>
-                            <th>{{ trans('blog::post.table.slug') }}</th>
+                            <th>{{ trans('news::post.table.status') }}</th>
+                            <th>{{ trans('news::post.table.author') }}</th>
+                            <th>{{ trans('news::post.table.category') }}</th>
+                            <th>{{ trans('news::post.table.title') }}</th>
+                            <th>{{ trans('news::post.table.slug') }}</th>
                             <th>{{ trans('core::core.table.created at') }}</th>
                             <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
@@ -43,7 +43,7 @@
                         <?php foreach ($posts as $post): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
+                                    <a href="{{ route('admin.news.post.edit', [$post->id]) }}">
                                         {{ $post->id }}
                                     </a>
                                 </td>
@@ -56,27 +56,27 @@
                                     {{ isset($post->author->fullname) ? $post->author->fullname : '' }}
                                 </td>
                                 <td>
-                                    {{ isset($post->category->name) ?  $post->category->name : '' }}
+                                    {{ isset($post->category->name) ? $post->category->name : '' }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
+                                    <a href="{{ route('admin.news.post.edit', [$post->id]) }}">
                                         {{ $post->title }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
+                                    <a href="{{ route('admin.news.post.edit', [$post->id]) }}">
                                         {{ $post->slug }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
+                                    <a href="{{ route('admin.news.post.edit', [$post->id]) }}">
                                         {{ $post->created_at }}
                                     </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.blog.post.edit', [$post->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.blog.post.destroy', [$post->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.news.post.edit', [$post->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.news.post.destroy', [$post->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -99,7 +99,7 @@
 @section('shortcuts')
     <dl class="dl-horizontal">
         <dt><code>c</code></dt>
-        <dd>{{ trans('blog::post.title.create post') }}</dd>
+        <dd>{{ trans('news::post.title.create post') }}</dd>
     </dl>
 @stop
 
@@ -109,7 +109,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.blog.post.create') ?>" }
+                    { key: 'c', route: "<?= route('admin.news.post.create') ?>" }
                 ]
             });
         });
@@ -117,7 +117,7 @@
             $('.data-table').dataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": '{{ route('admin.blog.post.index') }}',
+                "ajax": '{{ route('admin.news.post.index') }}',
                 "paginate": true,
                 "lengthChange": true,
                 "filter": true,
@@ -128,10 +128,10 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'status', name: 'status'},
-                    {data: 'author.fullname', name: 'author.fullname'},
-                    {data: 'category.name', name: 'category.name'},
-                    {data: 'title', name: 'title'},
-                    {data: 'slug', name: 'slug'},
+                    {data: 'author.fullname', name: 'author.first_name'},
+                    {data: 'category.name', name: 'category.translations.name'},
+                    {data: 'title', name: 'translations.title'},
+                    {data: 'slug', name: 'translations.slug'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: true}
                 ],
