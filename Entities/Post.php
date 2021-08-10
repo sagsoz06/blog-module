@@ -29,6 +29,9 @@ class Post extends Model implements TaggableInterface
         'status' => 'int',
     ];
     protected static $entityNamespace = 'asgardcms/blog';
+    protected $appends = [
+        'url'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
